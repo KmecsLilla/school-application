@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,7 +41,7 @@ public class DivisionController {
     }
 
     @PostMapping
-    public DivisionDto save(@RequestBody DivisionDto divisionDto) {
+    public DivisionDto save(@RequestBody @Valid DivisionDto divisionDto) {
         logger.info("POST /divisions called with parameter: " + divisionDto);
         Division division = divisionMapper.dtoToDivision(divisionDto);
         Division saved = divisionService.save(division);

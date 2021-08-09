@@ -3,24 +3,28 @@ package com.codecool.schoolapplication.dto;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.*;
 
 public class DivisionDto {
 
     private Long id;
+
+    @NotEmpty(message = "Name is mandatory")
     private String name;
+
+    @Size(min = 5, max = 50, message = "Size should be between min and max value")
     private String classMaster;
+
+    @Min(value = 2000, message = "Year should not be less than 2000")
+    @Max(value = 2030, message = "Year should not be greater than 2030")
     private int startupYear;
+
+    @Positive(message = "Number should be positive")
     private int numberOfMembers;
 
-    public DivisionDto() {
-    }
+    private Long schoolId;
 
-    public DivisionDto(Long id, String name, String classMaster, int startupYear, int numberOfMembers) {
-        this.id = id;
-        this.name = name;
-        this.classMaster = classMaster;
-        this.startupYear = startupYear;
-        this.numberOfMembers = numberOfMembers;
+    public DivisionDto() {
     }
 
     public Long getId() {
@@ -61,5 +65,13 @@ public class DivisionDto {
 
     public void setNumberOfMembers(int numberOfMembers) {
         this.numberOfMembers = numberOfMembers;
+    }
+
+    public Long getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Long schoolId) {
+        this.schoolId = schoolId;
     }
 }

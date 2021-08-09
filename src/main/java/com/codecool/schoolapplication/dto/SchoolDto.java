@@ -1,24 +1,20 @@
 package com.codecool.schoolapplication.dto;
 
-import com.codecool.schoolapplication.model.Division;
-
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class SchoolDto {
 
     private Long id;
+
+    @NotEmpty(message = "Name is mandatory")
     private String name;
+
+    @NotEmpty(message = "Address is mandatory")
     private String address;
-    private List<Division> divisions;
+    private List<DivisionDto> divisions;
 
     public SchoolDto() {
-    }
-
-    public SchoolDto(Long id, String name, String address, List<Division> divisions) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.divisions = divisions;
     }
 
     public Long getId() {
@@ -45,11 +41,11 @@ public class SchoolDto {
         this.address = address;
     }
 
-    public List<Division> getClasses() {
+    public List<DivisionDto> getDivisions() {
         return divisions;
     }
 
-    public void setClasses(List<Division> divisions) {
+    public void setDivisions(List<DivisionDto> divisions) {
         this.divisions = divisions;
     }
 }

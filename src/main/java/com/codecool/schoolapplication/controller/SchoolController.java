@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,7 +41,7 @@ public class SchoolController {
     }
 
     @PostMapping
-    public SchoolDto save(@RequestBody SchoolDto schoolDto) {
+    public SchoolDto save(@RequestBody @Valid SchoolDto schoolDto) {
         logger.info("POST /schools called with parameter: " + schoolDto);
         School school = schoolMapper.dtoToSchool(schoolDto);
         School saved = schoolService.save(school);

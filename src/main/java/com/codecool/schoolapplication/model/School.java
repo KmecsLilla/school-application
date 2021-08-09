@@ -1,30 +1,21 @@
 package com.codecool.schoolapplication.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class School {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String address;
-    @OneToMany
+
+    @OneToMany(mappedBy = "school")
     private List<Division> divisions;
 
     public School() {
-    }
-
-    public School(Long id, String name, String address, List<Division> divisions) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.divisions = divisions;
     }
 
     public Long getId() {
@@ -51,11 +42,11 @@ public class School {
         this.address = address;
     }
 
-    public List<Division> getClasses() {
+    public List<Division> getDivisions() {
         return divisions;
     }
 
-    public void setClasses(List<Division> divisions) {
+    public void setDivisions(List<Division> divisions) {
         this.divisions = divisions;
     }
 }

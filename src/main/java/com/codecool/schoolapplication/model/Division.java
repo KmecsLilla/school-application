@@ -1,29 +1,22 @@
 package com.codecool.schoolapplication.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Division {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String classMaster;
     private int startupYear;
     private int numberOfMembers;
 
-    public Division() {
-    }
+    @ManyToOne
+    private School school;
 
-    public Division(Long id, String name, String classMaster, int startupYear, int numberOfMembers) {
-        this.id = id;
-        this.name = name;
-        this.classMaster = classMaster;
-        this.startupYear = startupYear;
-        this.numberOfMembers = numberOfMembers;
+    public Division() {
     }
 
     public Long getId() {
@@ -64,5 +57,13 @@ public class Division {
 
     public void setNumberOfMembers(int numberOfMembers) {
         this.numberOfMembers = numberOfMembers;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 }
