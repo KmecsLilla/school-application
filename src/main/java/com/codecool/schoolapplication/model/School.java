@@ -15,16 +15,16 @@ public class School {
     private String name;
     private String address;
     @OneToMany
-    private List<Class> classes;
+    private List<Division> divisions;
 
     public School() {
     }
 
-    public School(Long id, String name, String address, List<Class> classes) {
+    public School(Long id, String name, String address, List<Division> divisions) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.classes = classes;
+        this.divisions = divisions;
     }
 
     public Long getId() {
@@ -51,11 +51,11 @@ public class School {
         this.address = address;
     }
 
-    public List<Class> getClasses() {
-        return classes;
+    public List<Division> getClasses() {
+        return divisions;
     }
 
-    public void setClasses(List<Class> classes) {
-        this.classes = classes;
+    public void setClasses(List<Division> divisions) {
+        this.divisions = divisions;
     }
 }

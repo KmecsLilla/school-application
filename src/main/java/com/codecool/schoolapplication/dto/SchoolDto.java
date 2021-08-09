@@ -1,6 +1,6 @@
-package com.codecool.schoolapplication.repository;
+package com.codecool.schoolapplication.dto;
 
-import com.codecool.schoolapplication.model.Class;
+import com.codecool.schoolapplication.model.Division;
 
 import java.util.List;
 
@@ -9,16 +9,16 @@ public class SchoolDto {
     private Long id;
     private String name;
     private String address;
-    private List<Class> classes;
+    private List<Division> divisions;
 
     public SchoolDto() {
     }
 
-    public SchoolDto(Long id, String name, String address, List<Class> classes) {
+    public SchoolDto(Long id, String name, String address, List<Division> divisions) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.classes = classes;
+        this.divisions = divisions;
     }
 
     public Long getId() {
@@ -45,11 +45,11 @@ public class SchoolDto {
         this.address = address;
     }
 
-    public List<Class> getClasses() {
-        return classes;
+    public List<Division> getClasses() {
+        return divisions;
     }
 
-    public void setClasses(List<Class> classes) {
-        this.classes = classes;
+    public void setClasses(List<Division> divisions) {
+        this.divisions = divisions;
     }
 }

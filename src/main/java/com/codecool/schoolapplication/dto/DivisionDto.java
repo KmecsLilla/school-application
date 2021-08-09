@@ -1,24 +1,21 @@
-package com.codecool.schoolapplication.model;
+package com.codecool.schoolapplication.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
-public class Class {
+public class DivisionDto {
 
-    @Id
-    @GeneratedValue
     private Long id;
     private String name;
     private String classMaster;
     private int startupYear;
     private int numberOfMembers;
 
-    public Class() {
+    public DivisionDto() {
     }
 
-    public Class(Long id, String name, String classMaster, int startupYear, int numberOfMembers) {
+    public DivisionDto(Long id, String name, String classMaster, int startupYear, int numberOfMembers) {
         this.id = id;
         this.name = name;
         this.classMaster = classMaster;

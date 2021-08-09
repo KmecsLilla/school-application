@@ -1,8 +1,8 @@
 package com.codecool.schoolapplication.controller;
 
+import com.codecool.schoolapplication.dto.SchoolDto;
 import com.codecool.schoolapplication.mapper.SchoolMapper;
 import com.codecool.schoolapplication.model.School;
-import com.codecool.schoolapplication.repository.SchoolDto;
 import com.codecool.schoolapplication.service.SchoolService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
