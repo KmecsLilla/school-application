@@ -1,26 +1,20 @@
-package com.codecool.schoolapplication.model;
+package com.codecool.schoolapplication.repository;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import com.codecool.schoolapplication.model.Class;
+
 import java.util.List;
 
-@Entity
-public class School {
+public class SchoolDto {
 
-    @Id
-    @GeneratedValue
     private Long id;
     private String name;
     private String address;
-    @OneToMany
     private List<Class> classes;
 
-    public School() {
+    public SchoolDto() {
     }
 
-    public School(Long id, String name, String address, List<Class> classes) {
+    public SchoolDto(Long id, String name, String address, List<Class> classes) {
         this.id = id;
         this.name = name;
         this.address = address;
