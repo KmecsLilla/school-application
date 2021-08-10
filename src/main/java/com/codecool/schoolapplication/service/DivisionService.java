@@ -27,12 +27,26 @@ public class DivisionService {
     }
 
     public Division update(Division division) {
-        if (divisionrepository.existsById(division.getId())) {
-            return divisionrepository.save(division);
-            } else {
-                return null;
+        Optional<Division> maybeExistingDivision = findById(division.getId());
+        if (maybeExistingDivision.isPresent()) {
+            Division existingDivision = maybeExistingDivision.get();
+            if (division.getName() != null) {
+                existingDivision.setName(division.getName());
             }
+            if (division.getClassMaster() != null) {
+                existingDivision.setClassMaster(division.getClassMaster());
+            }
+            if (division.getStartupYear() != null) {
+                existingDivision.setStartupYear(division.getStartupYear());
+            }
+            if (division.getNumberOfMembers() != null) {
+                existingDivision.setNumberOfMembers(division.getNumberOfMembers());
+            }
+            return divisionrepository.save(existingDivision);
+        } else {
+            return null;
         }
+    }
 
     public void delete(long id) {
         divisionrepository.deleteById(id);

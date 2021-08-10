@@ -17,10 +17,10 @@ public class DivisionDto {
 
     @Min(value = 2000, message = "Year should not be less than 2000")
     @Max(value = 2030, message = "Year should not be greater than 2030")
-    private int startupYear;
+    private Integer startupYear;
 
     @Positive(message = "Number should be positive")
-    private int numberOfMembers;
+    private Integer numberOfMembers;
 
     private Long schoolId;
 
@@ -51,19 +51,19 @@ public class DivisionDto {
         this.classMaster = classMaster;
     }
 
-    public int getStartupYear() {
+    public Integer getStartupYear() {
         return startupYear;
     }
 
-    public void setStartupYear(int startupYear) {
+    public void setStartupYear(Integer startupYear) {
         this.startupYear = startupYear;
     }
 
-    public int getNumberOfMembers() {
+    public Integer getNumberOfMembers() {
         return numberOfMembers;
     }
 
-    public void setNumberOfMembers(int numberOfMembers) {
+    public void setNumberOfMembers(Integer numberOfMembers) {
         this.numberOfMembers = numberOfMembers;
     }
 
