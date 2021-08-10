@@ -27,12 +27,20 @@ public class SchoolService {
     }
 
     public School update(School school) {
-        if (schoolrepository.existsById(school.getId())) {
-            return schoolrepository.save(school);
-            } else {
-                return null;
+        Optional<School> maybeExistingSchool = findById(school.getId());
+        if (maybeExistingSchool.isPresent()) {
+            School existingSchool = maybeExistingSchool.get();
+            if (school.getName() != null) {
+                existingSchool.setName(school.getName());
             }
+            if (school.getAddress() != null) {
+                existingSchool.setAddress(school.getAddress());
+            }
+            return schoolrepository.save(existingSchool);
+        } else {
+            return null;
         }
+    }
 
     public void delete(long id) {
         schoolrepository.deleteById(id);
