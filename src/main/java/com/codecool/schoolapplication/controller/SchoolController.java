@@ -40,6 +40,20 @@ public class SchoolController {
         return schoolMapper.schoolToDto(school);
     }
 
+//    @GetMapping("/{id}/students")
+//    public List<SchoolDto> listAllStudentsOfSchool(@PathVariable long id) {
+//        logger.info("GET /schools" + id + "called students");
+//        School school = findById(id);
+//        return schoolMapper.schoolsToDtos();
+//    }
+
+    @GetMapping("/{id}/students")
+    public Integer countStudentsNumber(@PathVariable long id) {
+        logger.info("GET /schools/" + id + "/students called");
+        Integer numberOfStudents = schoolService.countStudentsNumber(id);
+        return numberOfStudents;
+    }
+
     @PostMapping
     public SchoolDto save(@RequestBody @Valid SchoolDto schoolDto) {
         logger.info("POST /schools called with parameter: " + schoolDto);

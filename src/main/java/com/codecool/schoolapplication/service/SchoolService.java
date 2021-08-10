@@ -1,10 +1,12 @@
 package com.codecool.schoolapplication.service;
 
+import com.codecool.schoolapplication.model.Division;
 import com.codecool.schoolapplication.model.School;
 import com.codecool.schoolapplication.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +46,18 @@ public class SchoolService {
 
     public void delete(long id) {
         schoolrepository.deleteById(id);
+    }
+
+    public Integer countStudentsNumber(long id) {
+        Optional<School> maybeSchool = findById(id);
+        if (maybeSchool.isPresent()) {
+            School school = maybeSchool.get();
+            int numberOfStudents = 0;
+            for (Division division : school.getDivisions()) {
+                numberOfStudents += division.getNumberOfMembers();
+            }
+            return numberOfStudents;
+        }
+        return null;
     }
 }
