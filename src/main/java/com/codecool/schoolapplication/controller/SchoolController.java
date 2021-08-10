@@ -28,35 +28,35 @@ public class SchoolController {
 
     @GetMapping
     public List<SchoolDto> findAll() {
-        logger.info("GET /schools called");
+        logger.info("GET /school called");
         List<SchoolDto> result = schoolMapper.schoolsToDtos(schoolService.findAll());
         return result;
     }
 
     @GetMapping("/{id}")
     public SchoolDto findById(@PathVariable long id) {
-        logger.info("GET /schools/" + id + " called");
+        logger.info("GET /school/" + id + " called");
         School school = schoolService.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return schoolMapper.schoolToDto(school);
     }
 
-//    @GetMapping("/{id}/students")
-//    public List<SchoolDto> listAllStudentsOfSchool(@PathVariable long id) {
-//        logger.info("GET /schools" + id + "called students");
-//        School school = findById(id);
-//        return schoolMapper.schoolsToDtos();
-//    }
-
     @GetMapping("/{id}/students")
     public Integer countStudentsNumber(@PathVariable long id) {
-        logger.info("GET /schools/" + id + "/students called");
+        logger.info("GET /school/" + id + "/students called");
         Integer numberOfStudents = schoolService.countStudentsNumber(id);
         return numberOfStudents;
     }
 
+    @GetMapping("/{id}/support")
+    public Integer calculateGeneralSupport(@PathVariable long id) {
+       logger.info("GET /school/" + id + "/support called");
+       Integer generalSupport = schoolService.calculateGeneralSupport(id);
+       return generalSupport;
+    }
+
     @PostMapping
     public SchoolDto save(@RequestBody @Valid SchoolDto schoolDto) {
-        logger.info("POST /schools called with parameter: " + schoolDto);
+        logger.info("POST /school called with parameter: " + schoolDto);
         School school = schoolMapper.dtoToSchool(schoolDto);
         School saved = schoolService.save(school);
         SchoolDto result = schoolMapper.schoolToDto(saved);
@@ -65,7 +65,7 @@ public class SchoolController {
 
     @PutMapping("/{id}")
     public ResponseEntity<SchoolDto> update(@PathVariable long id, @RequestBody SchoolDto schoolDto) {
-        logger.info("PUT /schools/" + id + " called with parameter: " + schoolDto);
+        logger.info("PUT /school/" + id + " called with parameter: " + schoolDto);
         schoolDto.setId(id);
         School school = schoolMapper.dtoToSchool(schoolDto);
         School updated = schoolService.update(school);
@@ -79,7 +79,7 @@ public class SchoolController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id) {
-        logger.info("DELETE /schools/" + id + " called");
+        logger.info("DELETE /school/" + id + " called");
         schoolService.delete(id);
     }
 }

@@ -1,12 +1,12 @@
 package com.codecool.schoolapplication.service;
 
+import com.codecool.schoolapplication.config.SchoolConfiguration;
 import com.codecool.schoolapplication.model.Division;
 import com.codecool.schoolapplication.model.School;
 import com.codecool.schoolapplication.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +15,9 @@ public class SchoolService {
 
     @Autowired
     SchoolRepository schoolrepository;
+
+    @Autowired
+    SchoolConfiguration schoolConfiguration;
 
     public List<School> findAll() {
         return schoolrepository.findAll();
@@ -59,5 +62,10 @@ public class SchoolService {
             return numberOfStudents;
         }
         return null;
+    }
+
+    public Integer calculateGeneralSupport(long id) {
+        Integer generalSupport = countStudentsNumber(id) * schoolConfiguration.getStudentSupport();
+        return generalSupport;
     }
 }
