@@ -35,3 +35,8 @@
 #### - GET /school/{id}/students Counts number of students of a given school
 
 #### - GET /school/{id}/support Calculates the total general government support for a school specified by its id.
+
+# Docker
+
+docker build -t  school-application .
+docker run -p 8080:8080 school-application
