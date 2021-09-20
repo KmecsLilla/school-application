@@ -37,6 +37,12 @@ public class SchoolTest {
     }
 
     @Test
+    public void testGetSchool_notFound() throws Exception {
+        mvc.perform(get("/school/13"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void testAddSchool() throws Exception {
         mvc.perform(get("/school"))
                 .andExpect(status().isOk())
@@ -48,6 +54,22 @@ public class SchoolTest {
         mvc.perform(get("/school"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"name\":\"Petofi Sandor Gimnazium\",\"address\":\"Budapest I, Attila ut 43.\"")));
+    }
+
+    @Test
+    public void testAddSchool_missingAddress() throws Exception {
+        mvc.perform(post("/school")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"Dummy\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testAddSchool_missingName() throws Exception {
+        mvc.perform(post("/school")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"address\":\"Dummy\"}"))
+                .andExpect(status().isBadRequest());
     }
 
     @Test

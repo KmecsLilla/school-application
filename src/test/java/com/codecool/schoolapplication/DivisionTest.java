@@ -37,6 +37,12 @@ public class DivisionTest {
     }
 
     @Test
+    public void testGetDivision_notFound() throws Exception {
+        mvc.perform(get("/division/15"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     public void testAddDivision() throws Exception {
         mvc.perform(get("/division"))
                 .andExpect(status().isOk())
